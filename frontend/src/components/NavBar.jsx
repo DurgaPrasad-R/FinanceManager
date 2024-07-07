@@ -4,14 +4,13 @@ import { Moon, Sun, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/contexts/ThemeProviderContext";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 import {
   DropdownMenu,
@@ -32,15 +31,28 @@ const NavBar = () => {
         <span>File</span>
         <span className="text-red-600">Manager</span>
       </div>
-      <div className="md:flex items-center justify-between gap-10 md:gap-5 hidden">
+      <div className="md:flex items-center justify-between gap-16 hidden">
         <Link
           to="/"
           className="p-2 cursor-pointer"
           onClick={() => setSelected("Home")}
         >
           <div className="flex items-center font-bold gap-1">
-            <img src="/home.png" alt="home" className="w-10 object-contain" />
-            <p className="mt-2">Home</p>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <img
+                    src="/home.png"
+                    alt="home"
+                    className="w-8 object-contain"
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Home</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            {/*<p className="mt-2">Home</p>*/}
           </div>
           {selected === "Home" && (
             <div className="flex justify-center rounded-md h-1 bg-blue-600 w-full"></div>
@@ -52,12 +64,22 @@ const NavBar = () => {
           onClick={() => setSelected("Transactions")}
         >
           <div className="flex items-center font-bold gap-1">
-            <img
-              src="/tranxn.png"
-              alt="transactions"
-              className="w-10 object-contain"
-            />
-            <p className="mt-2">Transactions</p>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <img
+                    src="/tranxn.png"
+                    alt="transactions"
+                    className="w-8 object-contain"
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Transactions</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
+            {/*<p className="mt-2">Transactions</p>*/}
           </div>
           {selected === "Transactions" && (
             <div className="flex justify-center rounded-md h-1 bg-blue-600 w-full"></div>
@@ -69,12 +91,21 @@ const NavBar = () => {
           onClick={() => setSelected("Budget")}
         >
           <div className="flex items-center font-bold gap-1">
-            <img
-              src="/budget.png"
-              alt="budget"
-              className="w-10 object-contain"
-            />
-            <p className="mt-2">Budget</p>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <img
+                    src="/budget.png"
+                    alt="budget"
+                    className="w-8 object-contain"
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Accounts</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            {/*<p className="mt-2">Accounts</p>*/}
           </div>
           {selected === "Budget" && (
             <div className="flex justify-center rounded-md h-1 bg-blue-600 w-full"></div>
@@ -86,8 +117,22 @@ const NavBar = () => {
           onClick={() => setSelected("Goals")}
         >
           <div className="flex items-center font-bold gap-1">
-            <img src="/goal.png" alt="goals" className="w-10 object-contain" />
-            <p className="mt-1">Goals</p>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <img
+                    src="/goal.png"
+                    alt="goals"
+                    className="w-8 object-contain"
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Categories</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
+            {/*<p className="mt-1">Goals</p>*/}
           </div>
           {selected === "Goals" && (
             <div className="flex justify-center rounded-md h-1 bg-blue-600 w-full"></div>
@@ -99,12 +144,22 @@ const NavBar = () => {
           onClick={() => setSelected("Reports")}
         >
           <div className="flex items-center font-bold gap-1">
-            <img
-              src="/report.png"
-              alt="reports"
-              className="w-10 object-contain"
-            />
-            <p className="mt-1">Reports</p>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  {" "}
+                  <img
+                    src="/report.png"
+                    alt="reports"
+                    className="w-8 object-contain"
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Reports</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            {/*<p className="mt-1">Reports</p>*/}
           </div>
           {selected === "Reports" && (
             <div className="flex justify-center rounded-md h-1 bg-blue-600 w-full"></div>
@@ -209,7 +264,7 @@ const NavBar = () => {
                     alt="budget"
                     className="w-10 object-contain"
                   />
-                  <p className="mt-2">Budget</p>
+                  <p className="mt-2">Accounts</p>
                 </div>
               </Link>
               <Link
