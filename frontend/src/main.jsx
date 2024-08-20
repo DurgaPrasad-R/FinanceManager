@@ -43,6 +43,7 @@ const router = createBrowserRouter([
         element: <Reports />,
       },
     ],
+    
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

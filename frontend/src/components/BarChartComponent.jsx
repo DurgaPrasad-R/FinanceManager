@@ -3,7 +3,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -17,21 +16,21 @@ import {
 } from "@/components/ui/chart";
 
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "January", savings: 2500, expenses: 5000 },
+  { month: "February", savings: 2000, expenses: 5800 },
+  { month: "March", savings: 2200, expenses: 5300 },
+  { month: "April", savings: 1700, expenses: 4900 },
+  { month: "May", savings: 1600, expenses: 5500 },
+  { month: "June", savings: 1800, expenses: 6100 },
 ];
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  savings: {
+    label: "Savings",
     color: "#2563eb",
   },
-  mobile: {
-    label: "Mobile",
+  expenses: {
+    label: "Expenses",
     color: "#60a5fa",
   },
 };
@@ -40,9 +39,9 @@ export default function BarChartComponent() {
   return (
     <Card className="shadow-md">
       <CardHeader>
-        <CardTitle>Bar Chart</CardTitle>
+        <CardTitle>Savings and Expense</CardTitle>
         <CardDescription>
-          Showing total visitors for the last 6 months
+          Showing savings and expenses over last 6 months
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -65,8 +64,8 @@ export default function BarChartComponent() {
             />
             <ChartTooltip content={<ChartTooltipContent />} />
             <ChartLegend content={<ChartLegendContent />} />
-            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-            <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+            <Bar dataKey="savings" fill="var(--color-savings)" radius={4} />
+            <Bar dataKey="expenses" fill="var(--color-expenses)" radius={4} />
           </BarChart>
         </ChartContainer>
       </CardContent>

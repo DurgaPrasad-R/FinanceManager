@@ -28,24 +28,18 @@ const Goals = () => {
           <div>
             <Label htmlFor="email">Icon</Label>
             <Select>
-              <SelectTrigger>
+              <SelectTrigger className="w-20">
                 <SelectValue placeholder="Icon" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="light">
-                  <div className="w-20">
-                    <Bus />
-                  </div>
+                <SelectItem value="x">
+                  <Bus />
                 </SelectItem>
                 <SelectItem value="y">
-                  <div className="flex justify-center items-center">
-                    <Bus />
-                  </div>
+                  <Bus />
                 </SelectItem>
                 <SelectItem value="z">
-                  <div className="flex justify-center items-center">
-                    <Bus />
-                  </div>
+                  <Bus />
                 </SelectItem>
               </SelectContent>
             </Select>

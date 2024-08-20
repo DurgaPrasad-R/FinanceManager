@@ -13,48 +13,56 @@ import {
 import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart";
 
 const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 190, fill: "var(--color-other)" },
+  { category: "Rent", amount: 1200, fill: "var(--color-rent)" },
+  { category: "Utilities", amount: 300, fill: "var(--color-utilities)" },
+  { category: "Groceries", amount: 450, fill: "var(--color-groceries)" },
+  {
+    category: "Transportation",
+    amount: 200,
+    fill: "var(--color-transportation)",
+  },
+  {
+    category: "Entertainment",
+    amount: 150,
+    fill: "var(--color-entertainment)",
+  },
 ];
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
+  amount: {
+    label: "Amount",
   },
-  chrome: {
-    label: "Chrome",
+  rent: {
+    label: "Rent",
     color: "hsl(var(--chart-1))",
   },
-  safari: {
-    label: "Safari",
+  utilities: {
+    label: "Utilities",
     color: "hsl(var(--chart-2))",
   },
-  firefox: {
-    label: "Firefox",
+  groceries: {
+    label: "Groceries",
     color: "hsl(var(--chart-3))",
   },
-  edge: {
-    label: "Edge",
+  transportation: {
+    label: "Transportation",
     color: "hsl(var(--chart-4))",
   },
-  other: {
-    label: "Other",
+  entertainment: {
+    label: "Entertainment",
     color: "hsl(var(--chart-5))",
   },
 };
 
 export default function PieChartComponent() {
-  const totalVisitors = useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.visitors, 0);
+  const totalExpenses = useMemo(() => {
+    return chartData.reduce((acc, curr) => acc + curr.amount, 0);
   }, []);
 
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Pie Chart - Donut with Text</CardTitle>
+        <CardTitle>Expenses Breakdown</CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
@@ -66,12 +74,11 @@ export default function PieChartComponent() {
             />
             <Pie
               data={chartData}
-              dataKey="visitors"
-              nameKey="browser"
+              dataKey="amount"
+              nameKey="category"
               innerRadius={60}
               strokeWidth={5}
               outerRadius={80}
-              fill="var(--color-chrome)"
             >
               <Label
                 content={({ viewBox }) => {
@@ -88,14 +95,14 @@ export default function PieChartComponent() {
                           y={viewBox.cy}
                           className="fill-foreground text-3xl font-bold"
                         >
-                          {totalVisitors.toLocaleString()}
+                          {totalExpenses.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground"
                         >
-                          Visitors
+                          Expenses
                         </tspan>
                       </text>
                     );
@@ -112,7 +119,7 @@ export default function PieChartComponent() {
           Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
         </div>
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+          Showing total expenses for the last 6 months
         </div>
       </CardFooter>
     </Card>

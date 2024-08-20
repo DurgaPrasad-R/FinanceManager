@@ -28,7 +28,7 @@ const NavBar = () => {
   return (
     <div className="flex justify-between p-4">
       <div className="font-bold text-2xl flex items-center justify-center">
-        <span>File</span>
+        <span>Finance</span>
         <span className="text-red-600">Manager</span>
       </div>
       <div className="md:flex items-center justify-between gap-16 hidden">

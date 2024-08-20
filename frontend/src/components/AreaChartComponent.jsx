@@ -11,18 +11,18 @@ import {
 import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart";
 
 const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
-  { month: "July", desktop: 244 },
-  { month: "August", desktop: 209 },
-  { month: "September", desktop: 186 },
-  { month: "October", desktop: 305 },
-  { month: "November", desktop: 237 },
-  { month: "December", desktop: 73 },
+  { month: "January", Savings: 1000 },
+  { month: "February", Savings: 1205 },
+  { month: "March", Savings: 1005 },
+  { month: "April", Savings: 1080 },
+  { month: "May", Savings: 1070 },
+  { month: "June", Savings: 1170 },
+  { month: "July", Savings: 1204 },
+  { month: "August", Savings: 1309 },
+  { month: "September", Savings: 1486 },
+  { month: "October", Savings: 1305 },
+  { month: "November", Savings: 1037 },
+  { month: "December", Savings: 1073 },
 ];
 
 const chartConfig = {
@@ -36,9 +36,9 @@ export default function AreaChartComponent() {
   return (
     <Card className="shadow-md">
       <CardHeader>
-        <CardTitle>Area Chart</CardTitle>
+        <CardTitle>Savings</CardTitle>
         <CardDescription>
-          Showing total visitors for the last 12 months
+          Showing total savings for the last 12 months
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -64,7 +64,7 @@ export default function AreaChartComponent() {
               content={<ChartTooltipContent indicator="line" />}
             />
             <Area
-              dataKey="desktop"
+              dataKey="Savings"
               type="natural"
               fill="var(--color-desktop)"
               fillOpacity={0.4}
