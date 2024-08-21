@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Moon, Sun, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useUser } from "./customHooks/useUser";
 import { useTheme } from "@/components/contexts/ThemeProviderContext";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -24,6 +25,7 @@ import {
 const NavBar = () => {
   const { theme, setTheme } = useTheme();
   const [selected, setSelected] = useState("Home");
+  const { userData, isAuthenticated, loginWithPopup, logout } = useUser();
 
   return (
     <div className="flex justify-between p-4">
@@ -168,17 +170,20 @@ const NavBar = () => {
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Avatar>
-              <AvatarImage src="https://lh3.googleusercontent.com/a/ACg8ocKn8YEMHWL1_8T65KgdCrJ7GmichWva1cT4t9M766FSUEDflw=s96-c" />
-              <AvatarFallback>DP</AvatarFallback>
+              {isAuthenticated && <AvatarImage src={userData?.picture} />}
+              <AvatarFallback>GU</AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>My Profile</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Billing</DropdownMenuItem>
-            <DropdownMenuItem>Team</DropdownMenuItem>
-            <DropdownMenuItem>Subscription</DropdownMenuItem>
+            {!isAuthenticated ? (
+              <DropdownMenuItem onClick={loginWithPopup}>
+                Login
+              </DropdownMenuItem>
+            ) : (
+              <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
+            )}
           </DropdownMenuContent>
         </DropdownMenu>
         <DropdownMenu>

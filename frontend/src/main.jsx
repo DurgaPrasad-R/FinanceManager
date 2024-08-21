@@ -4,7 +4,9 @@ import { ThemeProvider } from "@/components/contexts/ThemeProviderContext";
 import App from "./App";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { UserProvider } from "./components/contexts/UserContext";
 import AuthLogin from "./components/AuthLogin";
+import EditProfile from "./components/EditProfile";
 import Home from "./components/Home";
 import Transactions from "./components/Transactions";
 import Budget from "./components/Budget";
@@ -23,27 +25,30 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/login",
+        path: "edit-profile",
+        element: <EditProfile />,
+      },
+      {
+        path: "login",
         element: <AuthLogin />,
       },
       {
-        path: "/transactions",
+        path: "transactions",
         element: <Transactions />,
       },
       {
-        path: "/budget",
+        path: "budget",
         element: <Budget />,
       },
       {
-        path: "/goals",
+        path: "goals",
         element: <Goals />,
       },
       {
-        path: "/reports",
+        path: "reports",
         element: <Reports />,
       },
     ],
-    
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -58,7 +63,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           "openid profile email read:current_user update:current_user_metadata",
       }}
     >
-      <RouterProvider router={router} />
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
     </Auth0Provider>
   </ThemeProvider>
 );

@@ -8,6 +8,8 @@ const { jwtCheck, fetchUserInfo } = require("./middleware/middleware");
 const app = express();
 
 // middleware setup
+require("dotenv").config();
+require("./config/dbConnect"); // db connection
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

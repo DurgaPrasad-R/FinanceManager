@@ -1,12 +1,12 @@
 const { auth } = require("express-oauth2-jwt-bearer");
 
-export const jwtCheck = auth({
+const jwtCheck = auth({
   audience: "this is my identifier for manager",
   issuerBaseURL: "https://dev-loyju480o4046tdd.us.auth0.com/",
   tokenSigningAlg: "RS256",
 });
 
-export const fetchUserInfo = async (req, res, next) => {
+const fetchUserInfo = async (req, res, next) => {
   // used to set the user info in the request object
   const accessToken = req.headers.authorization.split(" ")[1];
 
@@ -26,3 +26,5 @@ export const fetchUserInfo = async (req, res, next) => {
     res.status(500).send("Failed to fetch user info");
   }
 };
+
+module.exports = { jwtCheck, fetchUserInfo };

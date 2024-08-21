@@ -8,7 +8,7 @@ const MONGO_CLUSTER = process.env.MONGO_CLUSTER;
 const MONGO_DBNAME = process.env.MONGO_DBNAME;
 mongoose
   .connect(
-    `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_CLUSTER}.jywzgq9.mongodb.net/${MONGO_DBNAME}`
+    `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_CLUSTER}.qemuj.mongodb.net/${MONGO_DBNAME}`
   )
   .then(() => console.log(`Connected to: ${mongoose.connection.name}`))
   .catch((err) => console.log(err));
