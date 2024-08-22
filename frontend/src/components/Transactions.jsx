@@ -22,22 +22,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Transactions = () => {
-  const [selectedTransaction, setSelectedTransaction] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
-  const [newTransaction, setNewTransaction] = useState({
-    bank: "",
-    category: "",
-    recipient: "",
-    note: "",
-    amount: "",
-    date: null,
-  });
-
-  const data = [
+  const [transactions, setTransactions] = useState([
     {
       bank: "Union",
       category: "Servicing",
@@ -55,7 +40,22 @@ const Transactions = () => {
       date: new Date("2024-08-05"), // Example date
     },
     // Add more records here
-  ];
+  ]);
+
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [newTransaction, setNewTransaction] = useState({
+    bank: "",
+    category: "",
+    recipient: "",
+    note: "",
+    amount: "",
+    date: null,
+  });
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -106,14 +106,13 @@ const Transactions = () => {
   };
 
   const handleAddTransaction = () => {
-    // Here, you can add the logic to save the new transaction to the database
-    // For now, let's log it and close the dialog
-    console.log("New Transaction:", newTransaction);
-    handleAddTransactionClose();
+    // Update the transactions state with the new transaction
+    setTransactions([...transactions, newTransaction]);
+    handleAddTransactionClose(); // Close the dialog
   };
 
   // Filter data based on search query, selected category, and date range
-  const filteredData = data.filter((transaction) => {
+  const filteredData = transactions.filter((transaction) => {
     const matchesSearch =
       transaction.bank.toLowerCase().includes(searchQuery.toLowerCase()) ||
       transaction.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -305,14 +304,17 @@ const Transactions = () => {
                 selected={newTransaction.date}
                 onChange={handleDateChange}
                 placeholderText="Transaction Date"
-                className="p-2 border rounded w-full"
-                dateFormat="dd/MM/yyyy"
+                className="w-full p-2 border rounded bg-transparent"
               />
             </div>
           </DialogDescription>
           <DialogFooter>
-            <Button onClick={handleAddTransactionClose}>Cancel</Button>
-            <Button onClick={handleAddTransaction}>Add</Button>
+            <Button type="button" onClick={handleAddTransaction}>
+              Add
+            </Button>
+            <Button type="button" onClick={handleAddTransactionClose}>
+              Cancel
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

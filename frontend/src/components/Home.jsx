@@ -1,6 +1,6 @@
 import PieChartComponent from "./PieChart";
 import BarChartComponent from "./BarChartComponent";
-import AreaCharComponent from "./AreaChartComponent";
+// import AreaCharComponent from "./AreaChartComponent";
 import {
   Card,
   CardContent,
