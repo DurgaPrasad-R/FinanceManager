@@ -37,8 +37,8 @@ import { useState } from "react";
 
 const Budget = () => {
   const [accounts, setAccounts] = useState([
-    { accountNo: "100022000131", balance: "$25000" },
-    { accountNo: "100022000133", balance: "$15000" },
+    { accountNo: "100022000131", name: "Axis", balance: "$25000" },
+    { accountNo: "100022000133", name: "Union", balance: "$15000" },
   ]);
 
   const [newAccount, setNewAccount] = useState({
@@ -71,7 +71,7 @@ const Budget = () => {
 
   return (
     <div className="h-custom-height">
-      <Card className="p-5">
+      <Card className="p-1">
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
             <div>Bank Accounts</div>
@@ -123,6 +123,7 @@ const Budget = () => {
           <TableCaption>A list of your bank accounts.</TableCaption>
           <TableHeader>
             <TableRow>
+              <TableHead>Name</TableHead>
               <TableHead>Account Number</TableHead>
               <TableHead>Balance</TableHead>
               <TableHead className="text-right">Options</TableHead>
@@ -131,6 +132,7 @@ const Budget = () => {
           <TableBody>
             {accounts.map((account, index) => (
               <TableRow key={index}>
+                <TableCell>{account.name}</TableCell>
                 <TableCell className="font-medium">
                   {account.accountNo}
                 </TableCell>
